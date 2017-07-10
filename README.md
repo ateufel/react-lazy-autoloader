@@ -23,16 +23,13 @@ npm install react-lazy-autoloader
 ```js
 import LazyLoad from 'react-lazy-autloader';
 
-var children = [];
-for (var i = 0; i < 5000; i++) {
-  children.push(
-    <div style={{ height: 20 }}>
-      #{i}
-    </div>
-  );
-}
-
 <LazyLoad autoLoad={true} autoLoadInterval={100} itemPadding={5}>
   {children}
 </LazyLoad>
 ```
+
+`children` is an array of React components or just divs or whatever.
+
+## Options
+
+TODO
