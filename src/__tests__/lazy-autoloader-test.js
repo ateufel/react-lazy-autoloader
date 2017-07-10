@@ -1,64 +1,47 @@
 /*global jest, describe, it, expect*/
-let React = require('react'),
-	ReactDOM = require('react-dom'),
-	LazyLoad = require('../LazyLoad.js'),
-	TestUtils = require('react-addons-test-utils');
+import React from 'react';
+import {mount} from 'enzyme';
+import LazyLoad from '../LazyLoad.js';
 
-describe('LazyRender', function() {
-	function makeComponent(childCount, props) {
-		props = props || {};
-
+describe('LazyLoad', () => {
+	const makeChildren = (childCount) => {
 		let children = [];
 		for (let i = 0; i < childCount; i++) {
 			children.push(<div className="child" key={i} style={{height: 20}}>{i}</div>);
 		}
+		return children;
+	};
 
-		let div = document.createElement('div');
-		document.body.appendChild(div);
-		let component = ReactDOM.render(<LazyLoad maxHeight={200} {...props}>{children}</LazyLoad>, div);
+	it('renders all children on autoload', (done) => {
+		let children = makeChildren(100);
 
-		return component;
-	}
-
-	it('renders configurable number of children for padding', function() {
-		let lazy = makeComponent(100, {itemPadding:5});
-
-		let renderedChildren = TestUtils.scryRenderedDOMComponentsWithClass(
-			lazy, 'child'
-		);
-		expect(renderedChildren.length).toEqual(15);
+		const onFinished = () => {
+			expect(component.instance().props.onLoadFinished).toBeDefined();
+			expect(component.instance().state.loadedChildren.length).toEqual(100);
+			expect(component.children().length).toEqual(100);
+			done();
+		};
+		const component = mount(<LazyLoad onLoadFinished={onFinished} autoLoad={true}>{children}</LazyLoad>);
 	});
 
-	it('renders more children on scrolling', function() {
-		let lazy = makeComponent(100, {itemPadding:5});
+	it('renders more children on scrolling', (done) => {
+		let children = makeChildren(100);
 
-		let renderedChildren = TestUtils.scryRenderedDOMComponentsWithClass(
-			lazy, 'child'
-		);
-		expect(renderedChildren.length).toEqual(15);
+		const onFinished = () => {
+			expect(component.instance().props.onLoadFinished).toBeDefined();
+			expect(component.instance().state.loadedChildren.length).toEqual(100);
+			expect(component.children().length).toEqual(100);
+			done();
+		};
+		const component = mount(<LazyLoad onLoadFinished={onFinished}>{children}</LazyLoad>);
+
+		//TODO scroll until onFinished gets called
+		//TestUtils.Simulate.scroll(footer.getDOMNode(), {deltaY: 500});
+		//document.body.scrollTop = 100;
+		//window.dispatchEvent(new window.UIEvent('scroll', {detail: 0}));
 	});
 
-	it('renders all children on autoload', function() {
-		let lazy = makeComponent(100, {itemPadding:5});
+	it('renders nothing when there are no children', () => {
 
-		let renderedChildren = TestUtils.scryRenderedDOMComponentsWithClass(
-			lazy, 'child'
-		);
-		expect(renderedChildren.length).toEqual(15);
-	});
-
-	it('renders nothing when there are no children', function() {
-		var childData = [];
-
-		function childGen() {
-			return <div>Blank</div>
-		}
-
-		let lazy = makeComponent(1, {generatorData: childData, generatorFunction: childGen});
-
-		let renderedChildren = TestUtils.scryRenderedDOMComponentsWithClass(
-			lazy, 'child'
-		);
-		expect(renderedChildren.length).toEqual(1);
 	})
 });

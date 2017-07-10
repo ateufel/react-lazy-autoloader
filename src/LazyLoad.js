@@ -8,7 +8,8 @@ export default class LazyLoad extends React.PureComponent {
 		super(props);
 		this.state = {
 			displayEnd: 50,
-			loadedChildren: []
+			loadedChildren: [],
+			loadFinished: false
 		};
 	}
 	componentDidMount() {
@@ -31,8 +32,18 @@ export default class LazyLoad extends React.PureComponent {
 			loadedChildren: nextProps.children.slice(0, this.state.displayEnd)
 		});
 	}
+	componentDidUpdate(prevProps, prevState) {
+		if (this.state.loadFinished !== prevState.loadFinished && this.props.onLoadFinished) {
+			this.props.onLoadFinished();
+		}
+	}
 	onLoadMore = () => {
 		if (this.state.loadedChildren.length === this.props.children.length) {
+			if (!this.state.loadFinished) {
+				this.setState({
+					loadFinished: true
+				});
+			}
 			return;
 		}
 		this.setState({
@@ -40,6 +51,14 @@ export default class LazyLoad extends React.PureComponent {
 		});
 	};
 	onScroll = () => {
+		if (this.state.loadedChildren.length === this.props.children.length) {
+			if (!this.state.loadFinished) {
+				this.setState({
+					loadFinished: true
+				});
+			}
+			return;
+		}
 		const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
 
 		let childrenToLoad = this.props.itemPadding + Math.ceil(scrollTop / this.props.childrenHeight);
@@ -64,7 +83,8 @@ LazyLoad.propTypes = {
 	autoLoad: PropTypes.bool,
 	autoLoadInterval: PropTypes.number,
 	itemPadding: PropTypes.number,
-	childrenHeight: PropTypes.number
+	childrenHeight: PropTypes.number,
+	onLoadFinished: PropTypes.func
 };
 
 LazyLoad.defaultProps = {
