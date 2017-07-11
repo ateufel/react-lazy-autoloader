@@ -7,7 +7,7 @@ export default class LazyLoad extends React.PureComponent {
 	constructor(props) {
 		super(props);
 		this.state = {
-			displayEnd: 50,
+			displayEnd: props.itemPadding,
 			loadedChildren: [],
 			loadFinished: false
 		};
@@ -51,12 +51,7 @@ export default class LazyLoad extends React.PureComponent {
 		});
 	};
 	onScroll = () => {
-		if (this.state.loadedChildren.length === this.props.children.length) {
-			if (!this.state.loadFinished) {
-				this.setState({
-					loadFinished: true
-				});
-			}
+		if (this.state.loadFinished) {
 			return;
 		}
 		const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
@@ -65,9 +60,18 @@ export default class LazyLoad extends React.PureComponent {
 		childrenToLoad = Math.max(childrenToLoad, this.state.loadedChildren.length);
 		childrenToLoad = Math.min(childrenToLoad, this.props.children.length);
 
-		this.setState({
-			loadedChildren: this.props.children.slice(0, childrenToLoad)
-		});
+		if (childrenToLoad === this.props.children.length) {
+			if (!this.state.loadFinished) {
+				this.setState({
+					loadFinished: true,
+					loadedChildren: this.props.children.slice(0, childrenToLoad)
+				});
+			}
+		} else {
+			this.setState({
+				loadedChildren: this.props.children.slice(0, childrenToLoad)
+			});
+		}
 	};
 	render() {
 		return (

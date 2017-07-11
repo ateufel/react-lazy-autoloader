@@ -35,13 +35,7 @@ describe('LazyLoad', () => {
 		};
 		const component = mount(<LazyLoad onLoadFinished={onFinished}>{children}</LazyLoad>);
 
-		//TODO scroll until onFinished gets called
-		//TestUtils.Simulate.scroll(footer.getDOMNode(), {deltaY: 500});
-		//document.body.scrollTop = 100;
-		//window.dispatchEvent(new window.UIEvent('scroll', {detail: 0}));
+		document.body.scrollTop = 3000;
+		window.dispatchEvent(new window.UIEvent('scroll', {detail: 0}));
 	});
-
-	it('renders nothing when there are no children', () => {
-
-	})
 });

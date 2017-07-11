@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "Lazy loading on scroll oder interval",
   "main": "dist/LazyRender.js",
-  "author": "Andreas Teufel <a.teufel@limesoda.com>",
+  "author": "Andreas Teufel <admin@devils-heaven.com>",
   "keywords": [
     "react",
     "react-component",
@@ -39,17 +39,18 @@
     "babel-core": "^6.25.0",
     "babel-eslint": "^7.2.3",
     "babel-jest": "^20.0.3",
-    "babel-loader": "^6.2.4",
+    "babel-loader": "^7.1.1",
     "babel-preset-env": "^1.6.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
     "enzyme": "^2.9.1",
     "eslint": "^4.1.1",
+    "eslint-plugin-react": "^7.1.0",
     "raw-loader": "^0.5.1",
     "react": "^15.1.0",
     "react-dom": "^15.1.0",
     "react-test-renderer": "^15.6.1",
-    "webpack": "^1.13.1",
-    "webpack-dev-server": "^1.14.1"
+    "webpack": "^3.1.0",
+    "webpack-dev-server": "^2.5.1"
   }
 }
