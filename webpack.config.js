@@ -1,28 +1,18 @@
+const path = require('path');
+
 module.exports = {
-	cache: true,
-	context: __dirname,
-	entry: './example/js/index.js',
+	entry: './src/LazyLoad.js',
 	output: {
-		path: './example/build/',
-		filename: 'index.js'
+		path: path.join(__dirname, 'build'),
+		filename: 'LazyLoad.js'
 	},
 	module: {
-		loaders: [
+		rules: [
 			{
-				test: /\.jsx?$/,
-				exclude: /node_modules/,
-				loaders: [
-					'jsx?harmony&sourceMap=true'
-				]
-			}
-		],
-		postLoaders: [
-			{
-				loader: 'transform/cacheable?brfs'
+				test: /\.js$/,
+				include: path.join(__dirname, 'src'),
+				loader: 'babel-loader'
 			}
 		]
-	},
-	resolve: {
-		extensions: ['', '.js', '.jsx']
 	}
 };

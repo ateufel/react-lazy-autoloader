@@ -32,4 +32,17 @@ import LazyLoad from 'react-lazy-autloader';
 
 ## Options
 
-TODO
+### autoLoad (boolean)
+#### default: false
+If set to `true`, scroll loading is disabled and content will get autoloaded.
+### autoLoadInterval (number)
+#### default: 100
+Sets the interval to load the next batch of items, only needed if autoLoad is set to `true`.
+### itemPadding (number)
+#### default: 50
+Number of items to load initially and for each batch (when using autoloading).
+### childrenHeight (number)
+#### default: 50
+General children height, only needed when using scroll loading. Can just be the height of the tallest child.
+### onLoadFinished (function)
+Function to call when all items have been loaded - works with scroll loading and autoloading.
