@@ -19,7 +19,8 @@
   },
   "scripts": {
     "test": "jest",
-    "build": "webpack -p"
+    "build": "webpack -p",
+    "publish": "npm publish"
   },
   "jest": {
     "moduleFileExtensions": [
