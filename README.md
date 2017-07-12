@@ -5,7 +5,7 @@ Lazy loading on scroll oder interval
 
 ## Features
 
-* Simpe to use
+* Simple to use
 * Should work with all child elements
 * Can autoload children on interval
 * Can load children on scroll event
