@@ -15,7 +15,7 @@ Lazy loading on scroll oder interval
 ## Install
 
 ```bash
-npm install react-lazy-autoloader
+npm install --save react-lazy-autoloader
 ```
 
 ## Usage
