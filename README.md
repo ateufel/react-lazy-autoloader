@@ -10,7 +10,7 @@ Lazy loading on scroll oder interval
 * Can autoload children on interval
 * Can load children on scroll event
 * Works with different children heights when autoloading on interval (a main issue of other lazy renderers)
-* Detailed tutorial about this thing: http://www.devils-heaven.com/xxx
+* Detailed tutorial about this thing: http://www.devils-heaven.com/building-lazy-loader-react/
 
 ## Install
 
