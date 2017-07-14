@@ -21,7 +21,7 @@ npm install --save react-lazy-autoloader
 ## Usage
 
 ```js
-import LazyLoad from 'react-lazy-autloader';
+import LazyLoad from 'react-lazy-autoloader';
 
 <LazyLoad autoLoad={true} autoLoadInterval={100} itemPadding={5}>
   {children}
