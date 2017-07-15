@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/ateufel/react-lazy-autoloader.svg?branch=master)](https://travis-ci.org/ateufel/react-lazy-autoloader)
+
 React Lazy Autoloader
 =====================
 
