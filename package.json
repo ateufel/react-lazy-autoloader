@@ -1,6 +1,6 @@
 {
   "name": "react-lazy-autoloader",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Lazy loading on scroll or interval",
   "main": "build/LazyLoad.js",
   "author": "Andreas Teufel <admin@devils-heaven.com>",
